@@ -6,6 +6,7 @@ from datetime import date
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from bs4 import BeautifulSoup
 import getpass
 
@@ -48,14 +49,14 @@ def retrieve_scores(
 
             driver.get("https://www.jetpunk.com/daily-trivia/your-stats")
             html = driver.page_source
-
+            driver.quit()
             soup = BeautifulSoup(html, 'html.parser')
 
             scripts = soup.find_all('script')
             unformat_data = list([scr for scr in scripts if 'chartData' in scr.text][0].children)[0]
             break
 
-        except (UnboundLocalError, IndexError) as e:
+        except (UnboundLocalError, IndexError, NoSuchElementException, ElementNotInteractableException) as e:
             att_no += 1
             print(f"Attempt {att_no} failed: {e}")
 
