@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=80", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jetpunkscraper"
+
+readme = "README.md"
+
+maintainers = [
+  { name = "Christian Chapman-Bird", email = "c.chapmanbird@gmail.com" },
+]
+
+authors = [
+      { name = "Christian Chapman-Bird" },
+]
+
+requires-python = ">=3.9"
+
+classifiers = [
+  "License :: OSI Approved :: Apache License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+dynamic = [ "version" ]
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "selenium",
+    "bs4",
+    "typer",
+]
+
+[tool.setuptools_scm]
+
+[project.scripts]
+scrape-jetpunk = "jetpunkscraper.cli:app"
